@@ -12,7 +12,7 @@ class NetworkService {
 
 
 
-  getDasboardExample() async {
+  getDashboard() async {
     final response = await _helper.get(
         "$devEndpoint/dashboard");
     return DashboardResponse.fromJson(response);

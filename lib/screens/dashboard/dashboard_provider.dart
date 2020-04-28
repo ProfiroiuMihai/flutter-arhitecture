@@ -11,10 +11,10 @@ class DashboardProvider extends ChangeNotifier {
 
   ApiResponse apiResponse = new ApiResponse.loading("init");
 
-  getExampleDashboard() async {
+  getDashboard() async {
     try {
       DashboardResponse response =
-          await this.networkService.getDasboardExample();
+          await this.networkService.getDashboard();
       this.apiResponse = ApiResponse.completed(response);
 
       dashboardResponse = response;

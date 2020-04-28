@@ -7,29 +7,19 @@ import 'package:flutter_template/util/scale_ui_utils.dart';
 import 'package:flutter_template/widgets/text_widget.dart';
 import '../../../router.dart';
 
-class Transactions extends StatefulWidget {
 
-  DashboardResponse response;
+class TransactionsList extends StatelessWidget {
 
-
-  Transactions(this.response);
-
-  @override
-  TransactionsState createState() => TransactionsState(response);
-}
-
-class TransactionsState extends State<Transactions> {
-  DashboardResponse response;
-  TransactionsState(this.response);
-
-  List<TransactionItem> _transactions = <TransactionItem>[];
-  var items = <ListItem>[];
+  final DashboardResponse response;
+  TransactionsList(this.response);
+  final List<TransactionItem> _transactions = <TransactionItem>[];
+  final items = <ListItem>[];
 
   @override
   Widget build(BuildContext context) {
-    createMockupList();
+    createMockUpList();
 
-    return new SizedBox(
+    return new Container(
       height: ScreenUtil().setHeight(331),
       child: _transactionsList(),
     );
@@ -41,7 +31,7 @@ class TransactionsState extends State<Transactions> {
       itemBuilder: (context, i) {
         final index = i ~/ 2;
         if (index >= items.length / 2) {
-          createMockupList();
+          createMockUpList();
         }
         return items[i] is Month
             ? _buildTransactionsLabel(items[i] as Month)
@@ -93,7 +83,7 @@ class TransactionsState extends State<Transactions> {
           textBaseline: TextBaseline.alphabetic,
           children: <Widget>[TextWidget(amount, fontSize: 14,fontWeight: FontWeight.w600)]));
 
-  void createMockupList() {
+  void createMockUpList() {
     this.response.trans.forEach((t) => {
           _transactions.add(TransactionItem(
               Transaction.fromJson(t).name,

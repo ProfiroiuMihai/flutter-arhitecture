@@ -22,7 +22,7 @@ class DashBoardScreen extends StatelessWidget {
         viewModel: new DashboardProvider(),
         onModelReady: (model) {
           this.model = model;
-          this.model.getExampleDashboard();
+          this.model.getDashboard();
         },
         builder: (context, model, child) => Scaffold(
                 body: SafeArea(
@@ -211,7 +211,7 @@ class DashBoardScreen extends StatelessWidget {
             child: CircularProgressIndicator()));
         break;
       case Status.COMPLETED:
-        return Transactions(model.dashboardResponse);
+        return TransactionsList(model.dashboardResponse);
         break;
       case Status.ERROR:
         return Text(model.apiResponse.toString());
